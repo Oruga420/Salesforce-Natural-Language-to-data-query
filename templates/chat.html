@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">Salesforce Chatbot</h2>
+                <div id="chat-messages" class="mb-3" style="height: 300px; overflow-y: auto;">
+                    {% for message in messages %}
+                        <div class="chat-message {{ message.sender }}-message">
+                            {{ message.content }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <form action="{{ url_for('api_chat') }}" method="post">
+                    <div class="input-group">
+                        <input type="text" name="query" class="form-control" placeholder="Ask about Salesforce data..." required>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
